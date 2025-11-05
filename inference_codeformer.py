@@ -78,12 +78,14 @@ if __name__ == '__main__':
     parser.add_argument('--bg_tile', type=int, default=400, help='Tile size for background sampler. Default: 400')
     parser.add_argument('--suffix', type=str, default=None, help='Suffix of the restored faces. Default: None')
     parser.add_argument('--save_video_fps', type=float, default=None, help='Frame rate for saving video. Default: None')
+    parser.add_argument('--final_video_path', type=str, default="None", help='Final path for video file')
 
     args = parser.parse_args()
 
     # ------------------------ input & output ------------------------
     w = args.fidelity_weight
     input_video = False
+    final_video_path = str(args.final_video_path)
     if args.input_path.endswith(('jpg', 'jpeg', 'png', 'JPG', 'JPEG', 'PNG')): # input single img path
         input_img_list = [args.input_path]
         result_root = f'results/test_img_{w}'
@@ -264,7 +266,7 @@ if __name__ == '__main__':
         height, width = video_frames[0].shape[:2]
         if args.suffix is not None:
             video_name = f'{video_name}_{args.suffix}.png'
-        save_restore_path = os.path.join(result_root, f'{video_name}.mp4')
+        save_restore_path = os.path.join(result_root, f'{video_name}.mp4') if final_video_path == "None" else final_video_path
         vidwriter = VideoWriter(save_restore_path, height, width, fps, audio)
          
         for f in video_frames:
