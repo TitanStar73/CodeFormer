@@ -7,12 +7,7 @@ import cv2
 import sys
 import numpy as np
 
-try:
-    import ffmpeg
-except ImportError:
-    import pip
-    pip.main(['install', '--user', 'ffmpeg-python'])
-    import ffmpeg
+import ffmpeg
 
 def get_video_meta_info(video_path):
     ret = {}
