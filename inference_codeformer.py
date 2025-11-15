@@ -162,6 +162,7 @@ if __name__ == '__main__':
             import tqdm as tqdm
         except ImportError:
             # dummy tqdm
+            print("Install tqdm for a progress bar")
             def tqdm(gen):
                 for x in gen:
                     yield x
