@@ -262,7 +262,15 @@ if __name__ == '__main__':
                 save_restore_path = os.path.join(result_root, 'restored_faces', save_face_name)
                 imwrite(restored_face, save_restore_path)
             """
-
+            #Debug purposes
+            print(frame.shape)
+            print(img.shape)
+            print(restored_img)
+            try:
+                print(restored_img.shape)
+            except:
+                pass
+                
             cap_out.write(restored_img)
 
     else:
