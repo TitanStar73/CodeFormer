@@ -264,14 +264,14 @@ if __name__ == '__main__':
                 imwrite(restored_face, save_restore_path)
             """
             #Debug purposes
-            print("\n\n")
-            print(frame.shape)
-            print(img.shape)
-            print(restored_img)
-            try:
-                print(restored_img.shape)
-            except:
-                pass
+            #print("\n\n")
+            #print(frame.shape)
+            #print(img.shape)
+            #print(restored_img)
+            #try:
+            #    print(restored_img.shape)
+            #except:
+            #    pass
             print("\n\n")
                 
             cap_out.write(restored_img)
