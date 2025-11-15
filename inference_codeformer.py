@@ -130,7 +130,9 @@ if __name__ == '__main__':
     
     # ckpt_path = 'weights/CodeFormer/codeformer.pth'
     if args.fast_access_dir != "None":
-        ckpt_path = f"{args.fast_access_dir}/codeformer.pth"
+        import shutil
+        ckpt_path = "weights/CodeFormer/codeformer.pth"
+        shutil.copy(f"{args.fast_access_dir}/codeformer.pth", ckpt_path)
     else:
         print("No fast access, downloading codeformer.pth")
         ckpt_path = load_file_from_url(url=pretrain_model_url['restoration'], 
