@@ -79,6 +79,8 @@ if __name__ == '__main__':
     parser.add_argument('--suffix', type=str, default=None, help='Suffix of the restored faces. Default: None')
     parser.add_argument('--save_video_fps', type=float, default=None, help='Frame rate for saving video. Default: None')
     parser.add_argument('--final_video_path', type=str, default="None", help='Final path for video file')
+    parser.add_argument('--fast_access_dir', type=str, default="None", help='directory containing .pth files for fast access')
+    
 
     args = parser.parse_args()
 
@@ -127,8 +129,13 @@ if __name__ == '__main__':
                                             connect_list=['32', '64', '128', '256']).to(device)
     
     # ckpt_path = 'weights/CodeFormer/codeformer.pth'
-    ckpt_path = load_file_from_url(url=pretrain_model_url['restoration'], 
+    if args.fast_access_dir != "None":
+        ckpt_path = f"{args.fast_access_dir}/codeformer.pth"
+    else:
+        print("No fast access, downloading codeformer.pth")
+        ckpt_path = load_file_from_url(url=pretrain_model_url['restoration'], 
                                     model_dir='weights/CodeFormer', progress=True, file_name=None)
+    
     checkpoint = torch.load(ckpt_path)['params_ema']
     net.load_state_dict(checkpoint)
     net.eval()
