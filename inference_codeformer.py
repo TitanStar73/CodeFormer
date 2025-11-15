@@ -167,7 +167,7 @@ if __name__ == '__main__':
     # save enhanced video
     if input_video:
         try:
-            import tqdm as tqdm
+            from tqdm import tqdm
         except ImportError:
             # dummy tqdm
             print("Install tqdm for a progress bar")
