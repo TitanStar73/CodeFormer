@@ -79,7 +79,6 @@ if __name__ == '__main__':
     parser.add_argument('--suffix', type=str, default=None, help='Suffix of the restored faces. Default: None')
     parser.add_argument('--save_video_fps', type=float, default=None, help='Frame rate for saving video. Default: None')
     parser.add_argument('--final_video_path', type=str, default="None", help='Final path for video file')
-    parser.add_argument('--output_video_path', type=str, default="None")
 
     args = parser.parse_args()
 
@@ -174,7 +173,7 @@ if __name__ == '__main__':
         width  = int(cap_input.get(cv2.CAP_PROP_FRAME_WIDTH))
         height = int(cap_input.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
-        cap_out = cv2.VideoWriter(args.output_video_path, fourcc, fps, (width, height))
+        cap_out = cv2.VideoWriter(args.final_video_path, fourcc, fps, (width, height))
 
         for i in tqdm(range(int(cap_input.get(cv2.CAP_PROP_FRAME_COUNT)))):
             ret, frame = cap_input.read()
