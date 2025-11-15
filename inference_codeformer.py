@@ -182,7 +182,8 @@ if __name__ == '__main__':
         width  = int(cap_input.get(cv2.CAP_PROP_FRAME_WIDTH))
         height = int(cap_input.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
-        cap_out = cv2.VideoWriter(args.final_video_path, fourcc, fps, (width, height))
+        #cap_out = cv2.VideoWriter(args.final_video_path, fourcc, fps, (width, height))
+        cap_out = cv2.VideoWriter(args.output_video_path, fourcc, fps, (int(width * args.upscale), int(height * args.upscale)))
 
         for i in tqdm(range(int(cap_input.get(cv2.CAP_PROP_FRAME_COUNT)))):
             ret, frame = cap_input.read()
